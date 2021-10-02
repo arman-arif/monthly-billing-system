@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class CustomerController extends Controller
 {
     public function getCustomersViews(){
-        return view('customer.list');
+        return view('customer.customer-list');
     }
 }
