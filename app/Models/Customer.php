@@ -9,7 +9,13 @@ class Customer extends Model
 {
     use HasFactory;
 
-    public function getCustomersViews(){
-        return view('customer.list');
-    }
+    protected $fillable = [
+        'name', 'username', 'description', 'package_id', 'connection_date'
+    ];
+
+
+   public function bills()
+   {
+       return $this->hasMany(Billing::class, 'customer_id', 'id');
+   }
 }
