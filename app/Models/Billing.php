@@ -9,7 +9,11 @@ class Billing extends Model
 {
     use HasFactory;
 
-
+    /**
+     * Get the user that owns the Billing
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'id', 'customer_id');
