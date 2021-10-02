@@ -10,12 +10,20 @@ class Customer extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'username', 'description', 'package_id', 'connection_date'
+        'name',
+        'username',
+        'description',
+        'package_id',
+        'connection_date'
     ];
 
-
-   public function bills()
-   {
-       return $this->hasMany(Billing::class, 'customer_id', 'id');
-   }
+    /**
+     * Get all of the bills for the Customer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function bills()
+    {
+        return $this->hasMany(Billing::class, 'customer_id', 'id');
+    }
 }
