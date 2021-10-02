@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers as Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +22,8 @@ Auth::routes();
 
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('dashboard', [App\App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+Route::get('dashboard', [Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+
+Route::get('package', [Controllers\PackageController::class, 'getPackage'])->name('package');
+Route::get('package/add', [Controllers\PackageController::class, 'getAddPackage'])->name('add-package');
+Route::post('package/add', [Controllers\PackageController::class, 'postAddPackage'])->name('add-package');
