@@ -16,7 +16,8 @@ class CreateBillingsTable extends Migration
         Schema::create('billings', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('user');
+            $table->foreign('customer_id')->references('id')->on('customers');
+            // $table->string('username');
             $table->string('month');
             $table->string('amout');
             $table->date('due_date');

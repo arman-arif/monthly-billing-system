@@ -20,7 +20,7 @@ class CreatePackagesTable extends Migration
             $table->string('code');
             $table->string('speed');
             $table->string('duration');
-            $table->int('price');
+            $table->integer('price');
         });
     }
 
