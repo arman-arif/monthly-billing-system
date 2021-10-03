@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers as Controllers;
+use App\Http\Controllers\PackageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +24,15 @@ Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name(
 
 Route::get('dashboard', [Controllers\HomeController::class, 'dashboard'])->name('dashboard');
 
-Route::get('package', [Controllers\PackageController::class, 'getPackage'])->name('package');
-Route::get('package/add', [Controllers\PackageController::class, 'getAddPackage'])->name('add-package');
-Route::post('package/add', [Controllers\PackageController::class, 'postAddPackage'])->name('add-package');
+Route::group(['prefix' => 'customers'], function() {
+    Route::get('', [Controllers\CustomerController::class, 'getCustomers'])->name('customers');
+});
+
+Route::group(['prefix' => 'packages'], function() {
+    Route::get('', [PackageController::class, 'getPackages'])->name('package');
+Route::get('add', [PackageController::class, 'getAddPackage'])->name('add-package');
+Route::post('add', [PackageController::class, 'postAddPackage'])->name('add-package');
+Route::delete('delete/{id}', [PackageController::class,'deletePackage'])->name('delete-package');
+});
+
+
