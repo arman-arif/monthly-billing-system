@@ -5,7 +5,7 @@
             <a href="#" class="nav-link">Reports</a>
             <a href="#" class="nav-link">Customers</a>
             <a href="#" class="nav-link">Billing</a>
-            <a href="#" class="nav-link">Packages</a>
+            <a href="{{ route('package') }}" class="nav-link">Packages</a>
         </div>
     </div>
 </div>
