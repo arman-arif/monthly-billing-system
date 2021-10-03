@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @stack('stylesheet')
 </head>
 <body>
 <div id="app">
@@ -58,6 +59,14 @@
     @endguest
 </div>
 
+
+<script>
+    setTimeout(function(){
+        $('.msg-success').slideUp(500,function() { 
+            $(this).remove(); 
+        });
+    }, 3000);
+</script>
 @stack('javascript')
 </body>
 </html>

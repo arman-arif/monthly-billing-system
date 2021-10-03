@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('main-content')
+
+    @include('partials.message')
+
+    @stack('content-above')
+
     <div class="card mb-4">
         <div class="card-header">
             <div class="d-flex justify-content-between">
