@@ -5,7 +5,9 @@
 @endpush
 
 @section('content')
-    <form action="{{ route('add-package') }}" method="post">
+    <div class="row">
+        <div class="col-sm-10 col-md-8 col-lg-6 mx-auto">
+            <form action="{{ route('add-package') }}" method="post">
         @csrf
         <div class="mb-3">
             <input class="form-control" type="text" name="title" id="title" placeholder="Package Title"
@@ -30,7 +32,7 @@
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <div class="input-group">
                     <input class="form-control input-group-prepend" type="text" name="duration" id="duration"
-                           placeholder="Duration" value="{{ old('duration') }}">
+                           placeholder="Duration" value="{{ old('duration') }}" required>
                     <span class="input-group-append input-group-text">Days</span>
                 </div>
             </div>
@@ -44,6 +46,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary btn-block">Add</button>
-
     </form>
+        </div>
+    </div>
 @endsection
