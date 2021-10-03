@@ -17,4 +17,15 @@ class Package extends Model
         'price'
     ];
 
+
+    /**
+     * Get all of the bills for the Customer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function customers()
+    {
+        return $this->hasMany(Comment::class, 'package_id', 'id');
+    }
+
 }

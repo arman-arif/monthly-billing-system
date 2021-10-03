@@ -26,4 +26,14 @@ class Customer extends Model
     {
         return $this->hasMany(Billing::class, 'customer_id', 'id');
     }
+
+    /**
+     * Get the package for the Customer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function package()
+    {
+        return $this->hasOne(Package::class, 'id', 'package_id');
+    }
 }
