@@ -17,9 +17,9 @@ class CreatePackagesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('title');
-            $table->string('code');
-            $table->string('speed');
-            $table->string('duration');
+            $table->string('code')->nullable()->unique();
+            $table->tinyInteger('speed');
+            $table->tinyInteger('duration');
             $table->integer('price');
         });
     }
