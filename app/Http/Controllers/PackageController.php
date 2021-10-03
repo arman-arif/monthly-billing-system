@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class PackageController extends Controller
 {
-    public function getPackage()
+    public function getPackages()
     {
         $packages = Package::all();
         return view('package.package-list', ['title' => 'Packages'], compact('packages'));
@@ -22,7 +22,7 @@ class PackageController extends Controller
     {
         $request->validate([
             'title' => 'required|string',
-            'code' => 'string|max:5',
+            'code' => 'max:5',
             'speed' => 'numeric|required',
             'duration' => 'numeric|required',
             'price' => 'numeric|required',
@@ -37,6 +37,17 @@ class PackageController extends Controller
         ]);
         $package->save();
 
-        return redirect()->route('package');
+        return redirect()
+                ->route('package')
+                ->with('success', 'Package created successfully');
+    }
+
+    public function deletePackage($id)
+    {
+        (Package::find($id))->delete();
+
+        return redirect()
+                ->route('package')
+                ->with('success', 'Package deleted successfully');
     }
 }
