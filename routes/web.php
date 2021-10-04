@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,8 @@ Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name(
 Route::get('dashboard', [Controllers\HomeController::class, 'dashboard'])->name('dashboard');
 
 Route::group(['prefix' => 'customers'], function() {
-    Route::get('', [Controllers\CustomerController::class, 'getCustomers'])->name('customers');
+    Route::get('', [CustomerController::class, 'getCustomers'])->name('customers');
+    Route::get('add', [CustomerController::class, 'getAddCustomer'])->name('add-customer');
 });
 
 Route::group(['prefix' => 'packages'], function() {
