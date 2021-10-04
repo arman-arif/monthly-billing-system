@@ -1,7 +1,7 @@
 @extends('layouts.structure',['titleHeading'=>$title])
 
 @push('action-btn')
-    <a class="btn btn-sm btn-primary" href="{{ route('add-package') }}">Add Customer</a>
+    <a class="btn btn-sm btn-primary" href="{{ route('add-customer') }}">Add Customer</a>
 @endpush
 
 @push('stylesheet')
