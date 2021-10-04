@@ -7,6 +7,6 @@
     <title>Home</title>
 </head>
 <body>
-    <h1>Welcome to the project</h1>
+    <h1 align="center">Welcome to the project</h1>
 </body>
 </html>
