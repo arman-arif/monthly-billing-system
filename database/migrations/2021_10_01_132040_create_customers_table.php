@@ -18,7 +18,7 @@ class CreateCustomersTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('username')->unique();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->foreignId('package_id')->references('id')->on('packages');
             $table->date('connection_date');
         });
