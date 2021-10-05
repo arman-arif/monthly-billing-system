@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\CustomerController;
 
@@ -28,6 +29,10 @@ Route::get('dashboard', [Controllers\HomeController::class, 'dashboard'])->name(
 Route::group(['prefix' => 'customers'], function() {
     Route::get('', [CustomerController::class, 'getCustomers'])->name('customers');
     Route::get('add', [CustomerController::class, 'getAddCustomer'])->name('add-customer');
+    Route::post('add', [CustomerController::class, 'postAddCustomer'])->name('add-customer');
+    Route::get('edit', [CustomerController::class, 'getEditCustomer'])->name('edit-customer');
+    Route::put('edit', [CustomerController::class, 'postUpdateCustomer'])->name('edit-customer');
+    Route::delete('delete/{id}', [CustomerController::class, 'postDeleteCustomer'])->name('delete-customer');
 });
 
 Route::group(['prefix' => 'packages'], function() {
