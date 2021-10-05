@@ -25,7 +25,7 @@ class Package extends Model
      */
     public function customers()
     {
-        return $this->hasMany(Comment::class, 'package_id', 'id');
+        return $this->hasMany(Customer::class, 'package_id', 'id');
     }
 
 }
