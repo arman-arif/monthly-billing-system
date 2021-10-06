@@ -1,4 +1,4 @@
-@extends('layouts.structure',['titleHeading'=>$title])
+@extends('layouts.main',['titleHeading'=>$title])
 
 @push('content-below')
     @include('partials.error')

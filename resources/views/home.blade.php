@@ -1,4 +1,4 @@
-@extends('layouts.structure',['titleHeading'=>'Dashboard'])
+@extends('layouts.main',['titleHeading'=>'Dashboard'])
 
 @section('content')
     @if (session('status'))
