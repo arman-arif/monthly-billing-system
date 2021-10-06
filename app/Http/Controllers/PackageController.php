@@ -9,7 +9,7 @@ class PackageController extends Controller
 {
     public function getPackages()
     {
-        $packages = Package::all();
+        $packages = Package::all()->sortBy('speed');
         return view('package.package-list', ['title' => 'Packages'], compact('packages'));
     }
 

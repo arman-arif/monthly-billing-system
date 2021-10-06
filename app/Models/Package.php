@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+
 
 class Package extends Model
 {
@@ -26,6 +28,16 @@ class Package extends Model
     public function customers()
     {
         return $this->hasMany(Customer::class, 'package_id', 'id');
+    }
+
+    public function setCodeAttribute($value)
+    {
+        $this->attributes['code'] = Str::lower($value);
+    }
+
+    public function getCodeAttribute($value)
+    {
+        return Str::upper($value);
     }
 
 }
