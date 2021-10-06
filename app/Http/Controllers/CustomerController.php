@@ -8,25 +8,26 @@ use App\Models\Package;
 
 class CustomerController extends Controller
 {
-    public function getCustomers(){
-        $customers = Customer::orderBy('name')->get();
-        return view('customer.customer-list',['title'=>'Customers'], compact('customers'));
+    public function getCustomers()
+    {
+        $customers = Customer::orderBy('name')->with('package')->get();
+        return view('customer.customer-list', compact('customers'))->with('title', 'Customers');
     }
 
     public function getAddCustomer()
     {
         $packages = Package::all();
-        return view('customer.customer-add',['title'=>'Add Customer'], compact('packages'));
+        return view('customer.customer-add', compact('packages'))->with('title', 'Add Customer');
     }
 
     public function postAddCustomer(Request $request)
     {
         $request->validate([
-            'name'          => ['required','string'],
+            'name'          => ['required', 'string'],
             'username'      => ['required', 'string'],
             'description'   => ['max:100'],
             'package_id'    => ['required', 'numeric'],
-            'connection_date' => ['required','date']
+            'connection_date' => ['required', 'date']
         ]);
 
         $customer = new Customer([
@@ -39,7 +40,46 @@ class CustomerController extends Controller
         $customer->save();
 
         return redirect()
-                ->route('customers')
-                ->with('success', "Customer added successfully");
+            ->route('customers')
+            ->with('success', "Customer added successfully");
+    }
+
+    public function getEditCustomer($id)
+    {
+        $packages = Package::all();
+        $customer = Customer::find($id);
+        return view('customer.customer-edit', compact('packages', 'customer'))->with('title', 'Edit Customer');
+    }
+    public function postUpdateCustomer(Request $request)
+    {
+        $request->validate([
+            'name'          => ['required', 'string'],
+            'username'      => ['required', 'string'],
+            'description'   => ['max:100'],
+            'package_id'    => ['required', 'numeric'],
+            'connection_date' => ['required', 'date']
+        ]);
+
+        $customer = Customer::find($request->id);
+        $customer->name          = $request->name;
+        $customer->username      = $request->username;
+        $customer->description   = $request->description;
+        $customer->package_id    = $request->package_id;
+        $customer->connection_date = $request->connection_date;
+        $customer->save();
+
+        return redirect()
+            ->route('customers')
+            ->with('success', "Customer updated successfully");
+    }
+
+    public function deleteCustomer($id)
+    {
+        $customer = Customer::find($id);
+        $customer->delete();
+
+        return redirect()
+            ->route('customers')
+            ->with('success', "Customer successfully deleted");
     }
 }
