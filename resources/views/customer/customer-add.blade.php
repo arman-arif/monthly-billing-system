@@ -1,7 +1,11 @@
-@extends('layouts.structure',['titleHeading'=>$title])
+@extends('layouts.main',['titleHeading'=>$title])
 
 @push('content-below')
   @include('partials.error')
+@endpush
+
+@push('stylesheet')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.css">
 @endpush
 
 @section('content')
@@ -35,7 +39,7 @@
             </select>
           </div>
           <div class="col-sm-6 mb-3 mb-sm-0">
-            <input class="form-control" type="date" name="connection_date" id="connection_date"
+            <input class="form-control" type="text" name="connection_date" id="connection_date" placeholder="dd-mm-yyyy" data-toggle="datepicker"
               value="{{ old('connection_date') }}" required>
           </div>
         </div>
@@ -44,4 +48,11 @@
       </form>
     </div>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.js"></script>
+  <script>
+    $('[data-toggle=datepicker]').datepicker({
+      format: 'dd-mm-yyyy',
+    });
+  </script>
 @endsection
