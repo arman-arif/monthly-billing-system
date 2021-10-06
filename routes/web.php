@@ -30,9 +30,9 @@ Route::group(['prefix' => 'customers'], function() {
     Route::get('', [CustomerController::class, 'getCustomers'])->name('customers');
     Route::get('add', [CustomerController::class, 'getAddCustomer'])->name('add-customer');
     Route::post('add', [CustomerController::class, 'postAddCustomer'])->name('add-customer');
-    Route::get('edit', [CustomerController::class, 'getEditCustomer'])->name('edit-customer');
-    Route::put('edit', [CustomerController::class, 'postUpdateCustomer'])->name('edit-customer');
-    Route::delete('delete/{id}', [CustomerController::class, 'postDeleteCustomer'])->name('delete-customer');
+    Route::get('edit/{id}', [CustomerController::class, 'getEditCustomer'])->name('edit-customer');
+    Route::put('update-customer', [CustomerController::class, 'postUpdateCustomer'])->name('update-customer');
+    Route::delete('delete/{id}', [CustomerController::class, 'deleteCustomer'])->name('delete-customer');
 });
 
 Route::group(['prefix' => 'packages'], function() {
