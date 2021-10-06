@@ -10,12 +10,12 @@ class PackageController extends Controller
     public function getPackages()
     {
         $packages = Package::all()->sortBy('speed');
-        return view('package.package-list', ['title' => 'Packages'], compact('packages'));
+        return view('package.index', ['title' => 'Packages'], compact('packages'));
     }
 
     public function getAddPackage()
     {
-        return view('package.package-add', ['title' => 'Add Package']);
+        return view('package.add', ['title' => 'Add Package']);
     }
 
     public function postAddPackage(Request $request)

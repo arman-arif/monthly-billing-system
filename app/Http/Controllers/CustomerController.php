@@ -11,13 +11,13 @@ class CustomerController extends Controller
     public function getCustomers()
     {
         $customers = Customer::orderBy('name')->with('package')->get();
-        return view('customer.customer-list', compact('customers'))->with('title', 'Customers');
+        return view('customer.index', compact('customers'))->with('title', 'Customers');
     }
 
     public function getAddCustomer()
     {
         $packages = Package::all();
-        return view('customer.customer-add', compact('packages'))->with('title', 'Add Customer');
+        return view('customer.add', compact('packages'))->with('title', 'Add Customer');
     }
 
     public function postAddCustomer(Request $request)
@@ -48,7 +48,7 @@ class CustomerController extends Controller
     {
         $packages = Package::all();
         $customer = Customer::find($id);
-        return view('customer.customer-edit', compact('packages', 'customer'))->with('title', 'Edit Customer');
+        return view('customer.edit', compact('packages', 'customer'))->with('title', 'Edit Customer');
     }
     public function postUpdateCustomer(Request $request)
     {
