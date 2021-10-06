@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\BillingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,9 +38,15 @@ Route::group(['prefix' => 'customers'], function() {
 
 Route::group(['prefix' => 'packages'], function() {
     Route::get('', [PackageController::class, 'getPackages'])->name('package');
-Route::get('add', [PackageController::class, 'getAddPackage'])->name('add-package');
-Route::post('add', [PackageController::class, 'postAddPackage'])->name('add-package');
-Route::delete('delete/{id}', [PackageController::class,'deletePackage'])->name('delete-package');
+    Route::get('add', [PackageController::class, 'getAddPackage'])->name('add-package');
+    Route::post('add', [PackageController::class, 'postAddPackage'])->name('add-package');
+    Route::delete('delete/{id}', [PackageController::class,'deletePackage'])->name('delete-package');
 });
 
-
+Route::group(['prefix' => 'billing'], function() {
+    Route::get('', [BillingController::class, 'getBills'])->name('bills');
+    Route::get('add', [BillingController::class, 'getAddBill'])->name('add-bill');
+    Route::get('edit', [BillingController::class, 'getEditBill'])->name('edit-bill');
+    Route::post('edit', [BillingController::class, 'postEditBill'])->name('edit-bill');
+    Route::delete('delete/{id}', [BillingController::class,'deleteBill'])->name('delete-bill');
+});
