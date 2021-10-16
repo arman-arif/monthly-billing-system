@@ -17,9 +17,15 @@ class PackageTableSeeder extends Seeder
         Package::create([
             'title' => 'Basic',
             'code' => 'bk',
-            'speed' => '1',
-            'duration' => '30',
-            'price' => '50'
+            'speed' => '1', // in Mbps
+            'duration' => '30', // in Days
+            'price' => '50' // in Takas
+        ],[
+            'title' => 'Standard',
+            'code' => 'sd',
+            'speed' => '2', // in Mbps
+            'duration' => '30', // in Days
+            'price' => '50' // in Takas
         ]);
     }
 }

@@ -27,26 +27,33 @@ Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name(
 
 Route::get('dashboard', [Controllers\HomeController::class, 'dashboard'])->name('dashboard');
 
-Route::group(['prefix' => 'customers'], function() {
-    Route::get('', [CustomerController::class, 'getCustomers'])->name('customers');
-    Route::get('add', [CustomerController::class, 'getAddCustomer'])->name('add-customer');
-    Route::post('add', [CustomerController::class, 'postAddCustomer'])->name('add-customer');
-    Route::get('edit/{id}', [CustomerController::class, 'getEditCustomer'])->name('edit-customer');
-    Route::put('update-customer', [CustomerController::class, 'postUpdateCustomer'])->name('update-customer');
-    Route::delete('delete/{id}', [CustomerController::class, 'deleteCustomer'])->name('delete-customer');
+Route::middleware(['auth'])->group(function () {
+    Route::group(['prefix' => 'customers'], function() {
+        Route::get('', [CustomerController::class, 'getCustomers'])->name('customers');
+        Route::get('add', [CustomerController::class, 'getAddCustomer'])->name('add-customer');
+        Route::post('add', [CustomerController::class, 'postAddCustomer'])->name('add-customer');
+        Route::get('edit/{id}', [CustomerController::class, 'getEditCustomer'])->name('edit-customer');
+        Route::put('update-customer', [CustomerController::class, 'postUpdateCustomer'])->name('update-customer');
+        Route::delete('delete/{id}', [CustomerController::class, 'deleteCustomer'])->name('delete-customer');
+    });
+
+    Route::group(['prefix' => 'packages'], function() {
+        Route::get('', [PackageController::class, 'getPackages'])->name('package');
+        Route::get('add', [PackageController::class, 'getAddPackage'])->name('add-package');
+        Route::post('add', [PackageController::class, 'postAddPackage'])->name('add-package');
+        Route::delete('delete/{id}', [PackageController::class,'deletePackage'])->name('delete-package');
+    });
+
+    Route::group(['prefix' => 'billing'], function() {
+        Route::get('', [BillingController::class, 'getBills'])->name('bills');
+        Route::get('add', [BillingController::class, 'getAddBill'])->name('add-bill');
+        Route::get('edit', [BillingController::class, 'getEditBill'])->name('edit-bill');
+        Route::post('edit', [BillingController::class, 'postEditBill'])->name('edit-bill');
+        Route::delete('delete/{id}', [BillingController::class,'deleteBill'])->name('delete-bill');
+    });
 });
 
-Route::group(['prefix' => 'packages'], function() {
-    Route::get('', [PackageController::class, 'getPackages'])->name('package');
-    Route::get('add', [PackageController::class, 'getAddPackage'])->name('add-package');
-    Route::post('add', [PackageController::class, 'postAddPackage'])->name('add-package');
-    Route::delete('delete/{id}', [PackageController::class,'deletePackage'])->name('delete-package');
+Route::get('test',function (){
+    return bcrypt('321121');
 });
 
-Route::group(['prefix' => 'billing'], function() {
-    Route::get('', [BillingController::class, 'getBills'])->name('bills');
-    Route::get('add', [BillingController::class, 'getAddBill'])->name('add-bill');
-    Route::get('edit', [BillingController::class, 'getEditBill'])->name('edit-bill');
-    Route::post('edit', [BillingController::class, 'postEditBill'])->name('edit-bill');
-    Route::delete('delete/{id}', [BillingController::class,'deleteBill'])->name('delete-bill');
-});
