@@ -10,7 +10,7 @@ class CustomerController extends Controller
 {
     public function getCustomers()
     {
-        $customers = Customer::orderBy('name')->with('package')->get();
+        $customers = Customer::orderBy('name')->with(['user', 'package'])->latest('id')->paginate(10);
         return view('customer.index', compact('customers'))->with('title', 'Customers');
     }
 

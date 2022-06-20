@@ -37,7 +37,13 @@ class Customer extends Model
         return $this->hasOne(Package::class, 'id', 'package_id');
     }
 
-    public function getConnectionDateAttribute($date) {
+    public function getConnectionDateAttribute($date)
+    {
         return \Carbon\Carbon::parse($date)->format('d-m-Y');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

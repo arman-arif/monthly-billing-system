@@ -8,9 +8,9 @@
 
     <div class="card mb-4">
         <div class="card-header">
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between align-items-center">
                 <strong>{{ __(isset($titleHeading) ? $titleHeading : 'Home') }}</strong>
-                <div>
+                <div class="mb-0">
                     @stack('action-btn')
                 </div>
             </div>
