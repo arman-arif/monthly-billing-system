@@ -25,10 +25,10 @@ class CustomerFactory extends Factory
         $faker = new Generator();
         return [
             'name' => $faker->name(),
-            'username' $faker->userName(),
-            'description',
-            'package_id',
-            'connection_date'
+            'username' => $faker->userName(),
+            'description' => $faker->text(),
+            'package_id' => $faker->numberBetween(1, 3),
+            'connection_date' => $faker->dateTime(),
         ];
     }
 }
