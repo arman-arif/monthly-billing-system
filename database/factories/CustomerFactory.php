@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Faker/Factory as Faker;
+use Faker\Generator;
 
 class CustomerFactory extends Factory
 {
@@ -22,10 +22,10 @@ class CustomerFactory extends Factory
      */
     public function definition()
     {
-        $faker = Faker()
+        $faker = new Generator();
         return [
-            'name' => ,
-            'username',
+            'name' => $faker->name(),
+            'username' $faker->userName(),
             'description',
             'package_id',
             'connection_date'
