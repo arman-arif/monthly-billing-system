@@ -14,18 +14,22 @@ class PackageTableSeeder extends Seeder
      */
     public function run()
     {
-        Package::create([
-            'title' => 'Basic',
-            'code' => 'bk',
-            'speed' => '1', // in Mbps
-            'duration' => '30', // in Days
-            'price' => '50' // in Takas
-        ],[
-            'title' => 'Standard',
-            'code' => 'sd',
-            'speed' => '2', // in Mbps
-            'duration' => '30', // in Days
-            'price' => '50' // in Takas
-        ]);
+        collect([
+            [
+                'title' => 'Basic',
+                'code' => 'bsk',
+                'speed' => '1', // in Mbps
+                'duration' => '30', // in Days
+                'price' => '50' // in Takas
+            ], [
+                'title' => 'Standard',
+                'code' => 'std',
+                'speed' => '2', // in Mbps
+                'duration' => '30', // in Days
+                'price' => '100' // in Takas
+            ]
+        ])->each(function ($package) {
+            Package::create($package);
+        });
     }
 }

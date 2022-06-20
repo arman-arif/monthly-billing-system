@@ -17,7 +17,6 @@ class CreateBillingsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('customer_id')->references('id')->on('customers');
-            // $table->string('username');
             $table->string('month');
             $table->string('amout');
             $table->date('due_date');

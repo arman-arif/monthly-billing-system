@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Customer;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Generator;
 
@@ -22,13 +23,14 @@ class CustomerFactory extends Factory
      */
     public function definition()
     {
-        $faker = new Generator();
         return [
-            'name' => $faker->name(),
-            'username' => $faker->userName(),
-            'description' => $faker->text(),
-            'package_id' => $faker->numberBetween(1, 3),
-            'connection_date' => $faker->dateTime(),
+            'first_name' => $this->faker->firstName,
+            'last_name' => $this->faker->lastName,
+            'address' => $this->faker->address(),
+            'phone' => $this->faker->phoneNumber(),
+            'package_id' => rand(1, 2),
+            'user_id' => User::factory(),
+            'connection_date' => $this->faker->date(),
         ];
     }
 }
